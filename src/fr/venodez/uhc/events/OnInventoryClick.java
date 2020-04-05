@@ -28,28 +28,28 @@ public class OnInventoryClick implements Listener {
 			
 			event.setCancelled(true);
 			
-			if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§eUHC")) {
+			if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§eUHC")) {
 				
 				gamemode = "uhc";
 				player.closeInventory();
 				
 			}
 			
-			else if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§6UHC Run")) {
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§6UHC Run")) {
 				
 				gamemode = "uhcrun";
 				player.closeInventory();
 			
 			}
 			
-			else if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§bUHC Host")) {
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§bUHC Host")) {
 				
 				gamemode = "uhchost";
 				player.closeInventory();
 			
 			}
 			
-			else if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§cLoup-Garou UHC")) {
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§cLoup-Garou UHC")) {
 				
 				gamemode = "lguhc";
 				player.closeInventory();
@@ -58,11 +58,11 @@ public class OnInventoryClick implements Listener {
 		
 		}
 		
-		else if (inv.getName().equalsIgnoreCase("§c§lParamètres")) {
+		else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && inv.getName().equalsIgnoreCase("§c§lParamètres")) {
 			
 			event.setCancelled(true);
 			
-			if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§6Bordure")) {
+			if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§6Bordure")) {
 				
 				Inventory gui = Bukkit.createInventory(null, 27, "§6§lTaille de la bordure");
 				ItemStack door = Methods.generateItem(Material.WOOD_DOOR, 1, 0, "§7Retour");
@@ -110,7 +110,7 @@ public class OnInventoryClick implements Listener {
 			
 			event.setCancelled(true);
 			
-			if (item.getItemMeta().getDisplayName().equalsIgnoreCase("§7Retour")) {
+			if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§7Retour")) {
 				
 				Inventory gui = Bukkit.createInventory(null, 27, "§c§lParamètres");
 				ItemStack barrier = Methods.generateItem(Material.BARRIER, 1, 0, "§6Bordure");
@@ -145,6 +145,7 @@ public class OnInventoryClick implements Listener {
 				gui.setItem(26, lbGlass);
 				player.openInventory(gui);
 			
+
 				
 				
 			}

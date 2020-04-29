@@ -9,11 +9,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import fr.venodez.uhc.handlers.ScoreboardHandler;
 import fr.venodez.uhc.utils.Methods;
 
 public class OnInventoryClick implements Listener {
 	
-	public String gamemode;
+	public static int borderSize = 2000;
+	public static int slots = 20;
+	public static String gamemode = "UHC";
 	private final ItemStack lbGlass = Methods.generateItem(Material.STAINED_GLASS_PANE, 1, 3, null);
 	private final ItemStack wGlass = Methods.generateItem(Material.STAINED_GLASS_PANE, 1, 0, null);
 	
@@ -24,46 +27,52 @@ public class OnInventoryClick implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack item = event.getCurrentItem();
 		
+		if (item == null) return;
+		
 		if (inv.getName().equalsIgnoreCase("§f§l✔  Choix de UHC")) {
 			
 			event.setCancelled(true);
 			
 			if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§eUHC")) {
 				
-				gamemode = "uhc";
+				gamemode = "UHC";
+				ScoreboardHandler.createScoreboard("UHC", "§e§l");
 				player.closeInventory();
 				
 			}
 			
 			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§6UHC Run")) {
 				
-				gamemode = "uhcrun";
+				gamemode = "UHCRUN";
+				ScoreboardHandler.createScoreboard("UHCRUN", "§6§l");
 				player.closeInventory();
 			
 			}
 			
 			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§bUHC Host")) {
 				
-				gamemode = "uhchost";
+				gamemode = "UHCHOST";
+				ScoreboardHandler.createScoreboard("UHCHOST", "§b§l");
 				player.closeInventory();
 			
 			}
 			
 			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§cLoup-Garou UHC")) {
 				
-				gamemode = "lguhc";
+				gamemode = "LG-UHC";
+				ScoreboardHandler.createScoreboard("LG-UHC", "§c§l");
 				player.closeInventory();
 			
 			}
 		
 		}
 		
-		else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && inv.getName().equalsIgnoreCase("§c§lParamètres")) {
+		else if (inv.getName().equalsIgnoreCase("§c§lParamètres")) {
 			
 			event.setCancelled(true);
 			
 			if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§6Bordure")) {
-				
+					
 				Inventory gui = Bukkit.createInventory(null, 27, "§6§lTaille de la bordure");
 				ItemStack door = Methods.generateItem(Material.WOOD_DOOR, 1, 0, "§7Retour");
 				ItemStack redDye = Methods.generateItem(Material.INK_SACK, 1, 1, "§c-1000");
@@ -144,9 +153,100 @@ public class OnInventoryClick implements Listener {
 				gui.setItem(25, wGlass);
 				gui.setItem(26, lbGlass);
 				player.openInventory(gui);
-			
-
 				
+			}
+			
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§c-1000")) {
+				
+				int newBorderSize = borderSize - 1000;
+				
+				if (newBorderSize < 0) {
+					
+					player.sendMessage("§cVous ne pouvez pas avoir une bordure négative");
+					
+				}
+				
+				else {
+				
+					ScoreboardHandler.replaceScore(gamemode, "§2Bordure: §a" + Integer.toString(borderSize), "§2Bordure: §a" + Integer.toString(newBorderSize));
+					borderSize = newBorderSize;
+					Bukkit.getWorld("uhc").getWorldBorder().setSize(borderSize);
+					
+				}
+				
+				
+			}
+			
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§c-500")) {
+				
+				
+				int newBorderSize = borderSize - 500;
+				
+				if (newBorderSize < 0) {
+					
+					player.sendMessage("§cVous ne pouvez pas avoir une bordure négative");
+					
+				}
+				
+				else {
+					
+					ScoreboardHandler.replaceScore(gamemode, "§2Bordure: §a" + Integer.toString(borderSize), "§2Bordure: §a" + Integer.toString(newBorderSize));
+					borderSize = newBorderSize;
+					Bukkit.getWorld("uhc").getWorldBorder().setSize(borderSize);
+					
+				}
+				
+				
+			}
+			
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§c-100")) {
+				
+				int newBorderSize = borderSize - 100;
+				
+				if (newBorderSize < 0) {
+					
+					player.sendMessage("§cVous ne pouvez pas avoir une bordure négative");
+					
+				}
+				
+				else {
+				
+					ScoreboardHandler.replaceScore(gamemode, "§2Bordure: §a" + Integer.toString(borderSize), "§2Bordure: §a" + Integer.toString(newBorderSize));
+					borderSize = newBorderSize;
+					Bukkit.getWorld("uhc").getWorldBorder().setSize(borderSize);
+					
+				}
+				
+				
+			}
+			
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§a+100")) {
+				
+				int newBorderSize = borderSize + 100;			
+				
+				ScoreboardHandler.replaceScore(gamemode, "§2Bordure: §a" + Integer.toString(borderSize), "§2Bordure: §a" + Integer.toString(newBorderSize));
+				borderSize = newBorderSize;
+				Bukkit.getWorld("uhc").getWorldBorder().setSize(borderSize);
+				
+			}
+			
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§a+500")) {
+				
+				int newBorderSize = borderSize + 500;			
+				
+				ScoreboardHandler.replaceScore(gamemode, "§2Bordure: §a" + Integer.toString(borderSize), "§2Bordure: §a" + Integer.toString(newBorderSize));
+				borderSize = newBorderSize;
+				Bukkit.getWorld("uhc").getWorldBorder().setSize(borderSize);
+					
+			}
+			
+			else if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§a+1000")) {
+				
+				int newBorderSize = borderSize + 1000;			
+				
+				ScoreboardHandler.replaceScore(gamemode, "§2Bordure: §a" + Integer.toString(borderSize), "§2Bordure: §a" + Integer.toString(newBorderSize));
+				borderSize = newBorderSize;
+				Bukkit.getWorld("uhc").getWorldBorder().setSize(borderSize);
 				
 			}
 			

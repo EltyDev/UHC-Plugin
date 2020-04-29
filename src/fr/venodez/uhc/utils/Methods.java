@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Methods {
-
+	
 	public static ItemStack generateItem(Material material, int number, int metadata, String name) {
 		
 		ItemStack item = new ItemStack(material, number, (short) metadata);
@@ -17,3 +17,4 @@ public class Methods {
 	}
 	
 }
+	

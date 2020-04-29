@@ -12,13 +12,19 @@ import fr.venodez.uhc.utils.Methods;
 
 public class OnJoin implements Listener {
 	
+	public static int nPlayers = 0;
+	
+	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		
+		nPlayers++;
 		Player player = event.getPlayer();
 		player.teleport(new Location(Bukkit.getServer().getWorld("world"), 0, 121, 0, 90, 0));
 		player.getInventory().clear();
 		player.getInventory().setItem(8, Methods.generateItem(Material.BANNER, 1, 15, "§f§lTeams"));
+		event.setJoinMessage("§8" + player.getName() + " a rejoins la partie (§e" + nPlayers + "/" + OnInventoryClick.slots + "§8)");
+		
 		
 		if (player.getName().equalsIgnoreCase("EnzoLeMagnifique")) {
 			
@@ -30,3 +36,4 @@ public class OnJoin implements Listener {
 	}
 
 }
+  

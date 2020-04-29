@@ -23,6 +23,8 @@ public class OnRightClick implements Listener {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 		
+		if (item == null) return;
+		
 		if (item.hasItemMeta() && item.getItemMeta().hasDisplayName() && item.getItemMeta().getDisplayName().equalsIgnoreCase("§f§l✔  Choix de UHC")) {
 			
 			Inventory gui = Bukkit.createInventory(null, 27, "§f§l✔  Choix de UHC");
@@ -35,7 +37,7 @@ public class OnRightClick implements Listener {
 			gui.setItem(2, lbGlass);
 			gui.setItem(3, wGlass);
 			gui.setItem(4, lbGlass);
-			gui.setItem(5, wGlass);
+			gui.setItem(5, wGlass);	
 			gui.setItem(6, lbGlass);
 			gui.setItem(7, wGlass);
 			gui.setItem(8, lbGlass);
@@ -67,6 +69,7 @@ public class OnRightClick implements Listener {
 			ItemStack barrier = Methods.generateItem(Material.BARRIER, 1, 0, "§6Bordure");
 			ItemStack banner = Methods.generateItem(Material.BANNER, 1, 15, "§9Teams");
 			ItemStack clock = Methods.generateItem(Material.WATCH, 1, 0, "§eTemps");
+			ItemStack torch = Methods.generateItem(Material.REDSTONE_TORCH_ON, 1, 0, "§9Slots");
 			gui.setItem(0, lbGlass);
 			gui.setItem(1, wGlass);
 			gui.setItem(2, lbGlass);
@@ -78,12 +81,12 @@ public class OnRightClick implements Listener {
 			gui.setItem(8, lbGlass);
 			gui.setItem(9, wGlass);
 			gui.setItem(10, lbGlass);
-			gui.setItem(11, wGlass);
-			gui.setItem(12, barrier);
-			gui.setItem(13, banner);
-			gui.setItem(14, clock);
-			gui.setItem(15, wGlass);
-			gui.setItem(16, lbGlass);
+			gui.setItem(11, barrier);
+			gui.setItem(12, banner);
+			gui.setItem(13, wGlass);
+			gui.setItem(14, lbGlass);
+			gui.setItem(15, clock);
+			gui.setItem(16, torch);
 			gui.setItem(17, wGlass);
 			gui.setItem(18, lbGlass);
 			gui.setItem(19, wGlass);

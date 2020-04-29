@@ -2,4 +2,7 @@ name: Private
 version: 1.0
 author: Venodez
 main: fr.venodez.uhc.Main
+commands:
+  tpw:
+    permission: tpw.use
   
